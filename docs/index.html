@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="LociArt is a unified paradigm for free-style local video stylization, with the LociArt-100K dataset, GRNStyle, and the LociArt Benchmark.">
+  <meta name="keywords" content="local video stylization, video editing, generative refinement networks, polar style-aware mask, LociArt, GRNStyle, video diffusion">
+  <meta name="author" content="Yuxuan Chen, Feng Xie, Jiagao Hu, Fuhao Li, Zepeng Wang, Fei Wang, Daiguo Zhou">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LociArt: A Unified Paradigm for Free-Style Local Video Stylization">
+  <meta property="og:description" content="Controllable local video stylization that explicitly specifies where to stylize and what style to apply.">
+  <meta property="og:image" content="static/images/figures/data_pipeline.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LociArt: A Unified Paradigm for Free-Style Local Video Stylization">
+  <meta name="twitter:description" content="Dataset, model, and benchmark for region-aware local video stylization.">
+  <meta name="twitter:image" content="static/images/figures/data_pipeline.webp">
+  <meta name="citation_title" content="LociArt: A Unified Paradigm for Free-Style Local Video Stylization">
+  <meta name="citation_author" content="Yuxuan Chen">
+  <meta name="citation_author" content="Feng Xie">
+  <meta name="citation_author" content="Jiagao Hu">
+  <meta name="citation_author" content="Fuhao Li">
+  <meta name="citation_author" content="Zepeng Wang">
+  <meta name="citation_author" content="Fei Wang">
+  <meta name="citation_author" content="Daiguo Zhou">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_journal_title" content="Preprint">
+  <title>LociArt: Free-Style Local Video Stylization</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <ul class="nav-list">
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#dataset">Dataset</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#benchmark">Benchmark</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#citation">Citation</a></li>
+    </ul>
+  </nav>
+
+  <header class="paper-hero" id="top">
+    <div class="container hero-container">
+      <p class="eyebrow">Free-Style Local Video Stylization</p>
+      <h1>LociArt: A Unified Paradigm for<br>Free-Style Local Video Stylization</h1>
+      <p class="authors">
+        <span>Yuxuan Chen<sup>1,&dagger;</sup>,</span>
+        <span>Feng Xie<sup>2,&dagger;</sup>,</span>
+        <span>Jiagao Hu<sup>1,*,&dagger;</sup>,</span>
+        <span>Fuhao Li<sup>1,</sup>,</span>
+        <span>Zepeng Wang<sup>1</sup>,</span>
+        <span>Fei Wang<sup>1</sup>,</span>
+        <span>Daiguo Zhou<sup>1</sup></span>
+      </p>
+      <p class="equal-note"><sup>&dagger;</sup> Contributed equally. <sup>*</sup> Corresponding author.</p>
+      <p class="affiliation"><sup>1</sup> MiLM Plus, Xiaomi Inc. &nbsp; <sup>2</sup> Xi'an University of Electronic Science and Technology</p>
+      <div class="project-links" aria-label="Project resources">
+        <a class="project-button" href="https://arxiv.org/abs/XXXX.XXXXX">arXiv</a>
+        <span class="project-button" aria-disabled="true">Code (Coming soon)</span>
+        <span class="project-button" aria-disabled="true">LociArt-100K Dataset (Coming soon)</span>
+      </div>
+      <div class="demo-block" id="demo">
+        <video controls playsinline preload="auto" aria-label="LociArt local video stylization demonstration video">
+          <source src="static/videos/demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="hero-caption">A walkthrough of six representative local-stylization cases, each showing source, mask, and stylized result.</p>
+      <figure class="hero-figure">
+        <img src="static/images/figures/teaser.webp" alt="LociArt free-style local video stylization overview" loading="eager" decoding="async">
+        <figcaption><strong>Free-style local video stylization.</strong> Given one or more target masks and style instructions, LociArt edits only the selected regions&mdash;foreground, background, multiple subjects, or complementary regions&mdash;while preserving unselected content and maintaining temporal consistency.</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section section-alt" id="abstract">
+      <div class="container">
+        <h2>Abstract</h2>
+        <div class="abstract-text">
+          <p>Video stylization typically transforms entire scenes, while local artistic editing requires precise region-style association, spatial control, and temporal consistency. We introduce <strong>LociArt</strong>, a unified paradigm for free-style local video stylization that explicitly specifies <em>where to stylize</em> and <em>what style to apply</em> while preserving non-target content.</p>
+          <p>At its core, <strong>GRNStyle</strong> builds on Generative Refinement Networks and introduces a <strong>polar style-aware mask</strong> that embeds style identities as equal-norm directions within selected regions. Complementary representation-geometry conditioning combines encoded mask features with raw-mask spatial support. To provide paired supervision, we develop an automated pipeline combining global stylization, video object removal, matting, and compositing, and construct the <strong>LociArt-100K Dataset</strong>. We further establish the <strong>LociArt Benchmark</strong>, comprising 80 source videos and 84 target masks covering 168 foreground/background cases, with a <strong>Style Prototype Similarity (SPS)</strong> evaluation scheme.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="dataset">
+      <div class="container">
+        <h2>LociArt-100K Dataset</h2>
+        <p class="section-intro">LociArt-100K contains 100K paired 720P videos for free-style local video stylization. The dataset is built by separating global style generation from spatial composition. Source and object-removed videos are globally stylized, filtered, matted, and recombined into complementary foreground and background targets.</p>
+
+        <div class="part-block">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">Dataset construction</p>
+              <h3>Data construction pipeline</h3>
+              <p>The pipeline combines global stylization, object removal, alpha matting, and mask-guided compositing to produce paired local-stylization supervision.</p>
+            </div>
+          </div>
+          <figure class="paper-figure">
+            <img src="static/images/figures/data_pipeline.webp" alt="Overview of the LociArt-100K data construction pipeline" loading="lazy" decoding="async">
+            <figcaption><strong>Figure 1.</strong> Source and object-removed videos are globally stylized and filtered, then combined through mask-guided matting to produce foreground- and background-stylized pairs for human verification.</figcaption>
+          </figure>
+          <div class="metric-grid four-up">
+            <article class="metric-card"><strong>100K</strong><span>720P video pairs</span><p>Source, mask, instruction, and locally stylized target.</p></article>
+            <article class="metric-card"><strong>18</strong><span>artistic styles</span><p>From Ghibli and claymation to pixel art and watercolor.</p></article>
+            <article class="metric-card"><strong>52.4%</strong><span>VLM pass rate</span><p>Global stylization candidates entering human verification.</p></article>
+            <article class="metric-card"><strong>65%</strong><span>human pass rate</span><p>Local composites accepted after boundary and temporal review.</p></article>
+          </div>
+        </div>
+
+        <div class="part-block">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">Dataset composition</p>
+              <h3>Dataset statistics</h3>
+              <p>LociArt-100K covers 18 artistic categories and a broad distribution of foreground mask area ratios.</p>
+            </div>
+          </div>
+          <div class="figure-pair stats-pair">
+            <figure class="paper-figure">
+              <img src="static/images/figures/data_style_pie.webp" alt="Style-category distribution in LociArt-100K" loading="lazy" decoding="async">
+              <figcaption><strong>Style distribution.</strong> The final dataset covers 18 style categories.</figcaption>
+            </figure>
+            <figure class="paper-figure">
+              <img src="static/images/figures/data_mask_histogram.webp" alt="Foreground object mask area ratios in LociArt-100K" loading="lazy" decoding="async">
+              <figcaption><strong>Mask area ratios.</strong> Foreground object masks are not the complementary background editing masks.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="part-block" id="pipeline-gallery">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">Interactive sample browser</p>
+              <h3>Pipeline stages</h3>
+              <p>Inspect source, mask, removal, stylization, and final foreground/background composites.</p>
+            </div>
+            <div class="tabs" role="tablist" aria-label="Pipeline groups" id="pipelineTabs"></div>
+          </div>
+          <div id="pipelineGrid" class="interactive-grid"></div>
+        </div>
+
+        <div class="part-block">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">Construction analysis</p>
+              <h3>Data-construction ablation</h3>
+              <p>Direct compositing can leave ghosts or clip stylized contours; object removal and alpha matting resolve different failure modes.</p>
+            </div>
+          </div>
+          <figure class="paper-figure">
+            <img src="static/images/figures/data_pipeline_ablation.webp" alt="Data-construction ablation under changed contours" loading="lazy" decoding="async">
+            <figcaption><strong>Data-construction ablation.</strong> Direct compositing can leave ghosts or clip stylized contours. Object removal and alpha matting resolve different failure modes.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="method">
+      <div class="container">
+        <h2>GRNStyle</h2>
+        <p class="section-intro">GRNStyle binds style identities to target regions and combines encoded mask features with explicit geometric support. Source evidence guides content preservation throughout refinement.</p>
+        <figure class="paper-figure">
+          <img src="static/images/figures/model_pipeline.webp" alt="Overview of GRNStyle" loading="lazy" decoding="async">
+          <figcaption><strong>Figure 2.</strong> (a) Polar style-aware masks bind styles to regions and support multi-region composition. (b) Anchored mask evidence and geometric support are combined with source features through block-wise gating.</figcaption>
+        </figure>
+        <div class="method-grid">
+          <article class="method-card">
+            <span class="card-index">01</span>
+            <h3>Polar style-aware mask</h3>
+            <p>Each style is assigned a fixed equal-norm direction on a circle. Its coordinates are embedded inside the selected region, making the style-region interaction explicit before video encoding.</p>
+            <div class="equation">M<sub>s</sub>(q) = M(q) · ( (1+a<sub>s,1</sub>)/2, (1+a<sub>s,2</sub>)/2, 1 )</div>
+          </article>
+          <article class="method-card">
+            <span class="card-index">02</span>
+            <h3>Representation Geometry</h3>
+            <p>VAE-encoded mask features supply spatiotemporal context, while geometric support from binary occupancy localizes mask evidence and suppresses spatial spillover.</p>
+            <div class="equation">&Delta;Z<sup>M</sup> = &Phi;(M<sub>s</sub>) - &Phi;(0)</div>
+          </article>
+          <article class="method-card">
+            <span class="card-index">03</span>
+            <h3>Compositional inference</h3>
+            <p>Disjoint regions can carry their own learned style codes through the same conditioning interface, without adding channels or conditioning tokens.</p>
+            <div class="equation">M<sub>s</sub><sup>multi</sup> = &Sigma;<sub>j</sub> M<sub>s</sub><sup>j</sup></div>
+          </article>
+        </div>
+        <div class="table-block">
+          <div class="table-wrapper" tabindex="0" aria-label="Component ablation for mask conditioning">
+            <table class="ablation-table">
+              <thead>
+                <tr><th scope="col">Configuration</th><th scope="col">SPS &uarr;</th><th scope="col">CLIPT &uarr;</th><th scope="col">PSNR &uarr;</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Base</th><td>0.541</td><td>0.180</td><td>20.09</td></tr>
+                <tr><th scope="row">Base + Polar</th><td>0.553</td><td>0.181</td><td>21.34</td></tr>
+                <tr><th scope="row">Base + RG</th><td>0.544</td><td>0.179</td><td>25.07</td></tr>
+                <tr class="highlight-row"><th scope="row">GRNStyle</th><td><strong>0.554</strong></td><td><strong>0.181</strong></td><td><strong>25.78</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-caption"><strong>Table 1.</strong> Component ablation of representation-geometry conditioning (RG) and polar style-aware masks.</p>
+        </div>
+        <figure class="paper-figure">
+          <img src="static/images/figures/mask_conditioning_ablation.webp" alt="Mask-conditioning ablation" loading="lazy" decoding="async">
+          <figcaption><strong>Figure 3.</strong> Representation-geometry conditioning improves spatial localization over raw encoding, while the polar code improves style identity.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="benchmark">
+      <div class="container">
+        <h2>LociArt Benchmark</h2>
+        <p class="section-intro">The benchmark separates regional style quality, non-target preservation, and temporal consistency, rather than collapsing everything into a single global score.</p>
+        <div class="metric-grid four-up">
+          <article class="metric-card"><strong>80</strong><span>source videos</span><p>Each with 81 aligned frames.</p></article>
+          <article class="metric-card"><strong>84</strong><span>object-mask units</span><p>Some videos contain two selected subjects.</p></article>
+          <article class="metric-card"><strong>168</strong><span>stylization cases</span><p>Foreground and background editing for every unit.</p></article>
+          <article class="metric-card"><strong>93.61%</strong><span>SPS validation</span><p>Macro-averaged nearest-prototype accuracy.</p></article>
+        </div>
+        <div class="figure-pair prototype-pair">
+          <figure class="paper-figure">
+            <img src="static/images/figures/sps_prototypes.webp" alt="t-SNE visualization of SPS prototypes" loading="lazy" decoding="async">
+            <figcaption><strong>Style prototypes.</strong> 80 CSD prototypes across 18 styles.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/images/figures/sps_confusion.webp" alt="Confusion matrix for nearest-prototype validation" loading="lazy" decoding="async">
+            <figcaption><strong>Prototype validation.</strong> Row-normalized confusion under leave-one-source-out validation.</figcaption>
+          </figure>
+        </div>
+        <div class="metric-grid six-up">
+          <article class="metric-card"><strong>SPS</strong><span>style quality</span><p>Similarity to a class-specific prototype bank in CSD feature space.</p></article>
+          <article class="metric-card"><strong>CLIPT</strong><span>text alignment</span><p>Regional alignment between the edited region and the style instruction.</p></article>
+          <article class="metric-card"><strong>PSNR</strong><span>preservation</span><p>Fidelity to the source outside the intended edit region.</p></article>
+          <article class="metric-card"><strong>TC</strong><span>temporal consistency</span><p>Adjacent-frame CLIP feature similarity.</p></article>
+          <article class="metric-card"><strong>Style</strong><span>VLM score</span><p>Style correctness, coverage, and cross-frame stability.</p></article>
+          <article class="metric-card"><strong>Preserve</strong><span>VLM score</span><p>Source fidelity and temporal stability outside the edit.</p></article>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section section-alt" id="results">
+      <div class="container">
+        <h2>Local Stylization Results</h2>
+        <p class="section-intro">GRNStyle achieves the best SPS for foreground and background stylization, the best background CLIPT, and a strong trade-off between regional style and non-target preservation.</p>
+
+        <div class="part-block">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">LociArt Benchmark</p>
+              <h3>Quantitative comparison</h3>
+              <p>Performance is measured with regional style quality, non-target preservation, temporal consistency, and VLM-based perceptual scores.</p>
+            </div>
+          </div>
+          <div class="table-block wide-table-block">
+          <div class="table-wrapper" tabindex="0" aria-label="Quantitative comparison on the LociArt Benchmark">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th rowspan="2" scope="col">Method</th>
+                  <th rowspan="2" scope="col">Venue</th>
+                  <th colspan="2" scope="colgroup">SPS &uarr;</th>
+                  <th colspan="2" scope="colgroup">CLIPT &uarr;</th>
+                  <th colspan="2" scope="colgroup">PSNR &uarr;</th>
+                  <th rowspan="2" scope="col">TC &uarr;</th>
+                  <th rowspan="2" scope="col">Style &uarr;</th>
+                  <th rowspan="2" scope="col">Preserve &uarr;</th>
+                </tr>
+                <tr>
+                  <th scope="col">fg</th><th scope="col">bg</th><th scope="col">fg</th><th scope="col">bg</th><th scope="col">fg</th><th scope="col">bg</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row"><a class="method-link" href="https://github.com/silky1708/local-style-transfer" target="_blank" rel="noopener noreferrer">LEAST</a><sup>*&dagger;&ddagger;</sup></th><td>arXiv '24</td><td>0.283</td><td>0.302</td><td>0.158</td><td>0.173</td><td>-</td><td>-</td><td>0.953</td><td>2.20</td><td>4.50</td></tr>
+                <tr><th scope="row"><a class="method-link" href="https://github.com/ali-vilab/VACE" target="_blank" rel="noopener noreferrer">VACE-1.3B</a></th><td>ICCV '25</td><td>0.156</td><td>0.191</td><td>0.114</td><td>0.132</td><td><strong>32.35</strong></td><td><strong>29.17</strong></td><td>0.981</td><td>0.05</td><td><strong>5.00</strong></td></tr>
+                <tr><th scope="row"><a class="method-link" href="https://github.com/QuanjianSong/UniVST" target="_blank" rel="noopener noreferrer">UniVST</a><sup>*&ddagger;</sup></th><td>TPAMI '25</td><td>0.191</td><td>0.286</td><td>0.127</td><td>0.165</td><td>27.69</td><td>23.92</td><td>0.969</td><td>1.83</td><td>4.40</td></tr>
+                <tr><th scope="row"><a class="method-link" href="https://github.com/bwchen05/RegionRoute" target="_blank" rel="noopener noreferrer">RegionRoute</a><sup>&ddagger;</sup></th><td>CVPR '26</td><td>0.317</td><td>0.491</td><td>0.154</td><td>0.183</td><td><u>29.38</u></td><td>13.17</td><td>0.955</td><td>2.41</td><td>2.75</td></tr>
+                <tr><th scope="row"><a class="method-link" href="https://github.com/iiiiiiiword/StyleGallery" target="_blank" rel="noopener noreferrer">StyleGallery</a><sup>*&dagger;&ddagger;</sup></th><td>CVPR '26</td><td>0.230</td><td>0.325</td><td>0.146</td><td>0.183</td><td>-</td><td>-</td><td>0.957</td><td>3.39</td><td><u>4.77</u></td></tr>
+                <tr><th scope="row"><a class="method-link" href="https://github.com/coinve200k/CoinVE-200K/tree/main/CoinVE-Edit" target="_blank" rel="noopener noreferrer">CoinVE-Edit</a></th><td>arXiv '26</td><td>0.248</td><td>0.251</td><td>0.153</td><td>0.159</td><td>20.71</td><td>16.76</td><td><u>0.983</u></td><td>3.11</td><td>3.93</td></tr>
+                <tr><th scope="row"><a class="method-link" href="https://seed.bytedance.com/zh/seedance2_5" target="_blank" rel="noopener noreferrer">Seedance 2.5</a></th><td>Jul. 2026</td><td>0.347</td><td>0.358</td><td><strong>0.173</strong></td><td><u>0.175</u></td><td>18.50</td><td>18.76</td><td><strong>0.984</strong></td><td>3.98</td><td>2.40</td></tr>
+                <tr><th scope="row"><a class="method-link" href="https://github.com/ali-vilab/VACE" target="_blank" rel="noopener noreferrer">VACE-1.3B</a> (our FT)</th><td>-</td><td><u>0.386</u></td><td><u>0.676</u></td><td>0.155</td><td><u>0.185</u></td><td>25.43</td><td>25.49</td><td>0.980</td><td><u>4.52</u></td><td>4.56</td></tr>
+                <tr class="highlight-row"><th scope="row">GRNStyle-2B (ours)</th><td>-</td><td><strong>0.407</strong></td><td><strong>0.705</strong></td><td><u>0.160</u></td><td><strong>0.199</strong></td><td>25.92</td><td><u>26.15</u></td><td><u>0.983</u></td><td><strong>4.62</strong></td><td>4.64</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-caption"><strong>Table 2.</strong> Comparison on the LociArt Benchmark. fg/bg denote editing the target mask and its complement. <sup>&dagger;</sup> Direct mask-compositing methods omit PSNR because non-edited pixels are copied. <sup>&ddagger;</sup> Image-based methods. FT denotes local-stylization fine-tuning.</p>
+        </div>
+          <div class="result-highlights">
+            <div class="result-highlight"><strong>0.705</strong><span>SPS background</span><small>Best in Table 2</small></div>
+            <div class="result-highlight"><strong>0.199</strong><span>CLIPT background</span><small>Best in Table 2</small></div>
+            <div class="result-highlight"><strong>4.62</strong><span>VLM Style</span><small>Highest in Table 2</small></div>
+            <div class="result-highlight"><strong>0.983</strong><span>Temporal consistency</span><small>Near-best</small></div>
+          </div>
+        </div>
+
+        <div class="part-block" id="sota-gallery">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">State-of-the-art samples</p>
+              <h3>Qualitative comparison</h3>
+              <p>Compare GRNStyle with CoinVE-Edit, Seedance 2.5, and RegionRoute where available. All 60 comparison videos in the project sample set are included.</p>
+            </div>
+            <div class="tabs" role="tablist" aria-label="Style groups" id="sotaTabs"></div>
+          </div>
+          <div id="sotaGrid" class="interactive-grid"></div>
+        </div>
+
+        <div class="part-block">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">Human evaluation</p>
+              <h3>User study</h3>
+              <p>Twenty participants rated 168 matched cases for style fidelity and background preservation.</p>
+            </div>
+          </div>
+          <div class="split-layout">
+            <figure class="paper-figure">
+              <img src="static/images/figures/human_evaluation.webp" alt="Human evaluation of style fidelity and background preservation" loading="lazy" decoding="async">
+              <figcaption><strong>Figure 4.</strong> Human evaluation with 20 participants on 168 cases. GRNStyle achieves the highest mean ratings for style fidelity (4.34) and background preservation (4.47).</figcaption>
+            </figure>
+            <div class="copy-panel">
+              <p class="kicker">Key findings</p>
+              <h3>Consistent gains across styles</h3>
+              <p>GRNStyle outperforms CoinVE-Edit on both criteria for all ten styles, improves preservation over Seedance 2.5 for every style, and improves style fidelity for seven styles.</p>
+              <ul class="check-list">
+                <li><strong>4.34</strong> mean style fidelity</li>
+                <li><strong>4.47</strong> mean background preservation</li>
+                <li><strong>20</strong> participants across 168 cases</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="part-block">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">Replay-free style expansion</p>
+              <h3>New style without replay</h3>
+              <p>Expanding from 10 to 15 classes without replaying old classes preserves the original styles and adds the five new styles through polar conditioning.</p>
+            </div>
+          </div>
+          <div class="table-block">
+          <div class="table-wrapper" tabindex="0" aria-label="Replay-free style expansion results">
+            <table class="expansion-table">
+              <thead>
+                <tr>
+                  <th rowspan="2" scope="col">Configuration</th>
+                  <th colspan="3" scope="colgroup">10 classes (old)</th>
+                  <th colspan="3" scope="colgroup">5 classes (new)</th>
+                </tr>
+                <tr><th scope="col">SPS &uarr;</th><th scope="col">CLIPT &uarr;</th><th scope="col">PSNR &uarr;</th><th scope="col">SPS &uarr;</th><th scope="col">CLIPT &uarr;</th><th scope="col">PSNR &uarr;</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Binary, 10 classes</th><td>0.547</td><td>0.177</td><td>25.42</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr class="highlight-row"><th scope="row">Binary, 15 classes</th><td>0.445 <small class="drop">(-0.102)</small></td><td>0.158 <small class="drop">(-0.019)</small></td><td>25.43</td><td>0.588</td><td>0.197</td><td>25.39</td></tr>
+                <tr><th scope="row">Polar, 10 classes</th><td>0.553</td><td>0.180</td><td>25.75</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr class="highlight-row"><th scope="row">Polar, 15 classes</th><td>0.531 <small class="drop">(-0.022)</small></td><td>0.172 <small class="drop">(-0.008)</small></td><td>25.77</td><td><strong>0.590</strong></td><td><strong>0.199</strong></td><td><strong>25.74</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-caption"><strong>Table 3.</strong> Replay-free style expansion from 10 to 15 classes. Expanded models are trained only on the five new classes.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <h2>Video Gallery</h2>
+        <p class="section-intro">All videos from the project sample set are organized into focused galleries with source, mask, and generated result context. The second part compares GRNStyle with direct pipeline outputs.</p>
+
+        <div class="part-block" id="results-gallery">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">GRNStyle outputs</p>
+              <h3>Foreground, background, and multi-region</h3>
+              <p>Four curated cases in each category, with source and mask context for direct inspection.</p>
+            </div>
+            <div class="tabs" role="tablist" aria-label="Result categories" id="resultTabs"></div>
+          </div>
+          <div id="resultGrid" class="interactive-grid"></div>
+        </div>
+
+        <div class="part-block" id="failure-cases">
+          <div class="part-heading">
+            <div>
+              <p class="kicker">End-to-end diagnostics</p>
+              <h3>GRNStyle vs. Pipeline</h3>
+              <p>These examples compare direct pipeline outputs with GRNStyle when a stylized subject no longer matches the source mask or when an object-removal stage damages scene elements.</p>
+            </div>
+            <div class="tabs" role="tablist" aria-label="Failure categories" id="failureTabs"></div>
+          </div>
+          <div id="failure-gallery">
+            <div id="failureGrid" class="interactive-grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="citation">
+      <div class="container citation-container">
+        <h2>Citation</h2>
+        <div class="citation-card">
+          <pre id="bibtex"><code>@article{chen2026lociart,
+  title   = {LociArt: A Unified Paradigm for Free-Style Local Video Stylization},
+  author  = {Chen, Yuxuan and Xie, Feng and Hu, Jiagao and Li, Fuhao and Wang, Zepeng and Wang, Fei and Zhou, Daiguo},
+  year    = {2026},
+  note    = {Preprint}
+}</code></pre>
+          <button class="copy-button" type="button" id="copyBibtex">Copy BibTeX</button>
+        </div>
+        <p class="citation-note">All figure assets on this page are converted from the source figure PDFs. Quantitative tables are redrawn in HTML.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <span>LociArt - MiLM Plus, Xiaomi Inc. &amp; Xidian University</span>
+      <span><a href="#top">Back to top</a></span>
+    </div>
+  </footer>
+
+  <script src="static/js/media-data.js"></script>
+  <script src="static/js/index.js"></script>
+</body>
+</html>
