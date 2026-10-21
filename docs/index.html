@@ -105,7 +105,7 @@
           </div>
           <figure class="paper-figure">
             <img src="static/images/figures/data_pipeline.webp" alt="Overview of the LociArt-100K data construction pipeline" loading="lazy" decoding="async">
-            <figcaption><strong>Figure 1.</strong> Source and object-removed videos are globally stylized and filtered, then combined through mask-guided matting to produce foreground- and background-stylized pairs for human verification.</figcaption>
+            <figcaption><strong>Data construction pipeline.</strong> Source and object-removed videos are globally stylized and filtered, then combined through mask-guided matting to produce foreground- and background-stylized pairs for human verification.</figcaption>
           </figure>
           <div class="metric-grid four-up">
             <article class="metric-card"><strong>100K</strong><span>720P video pairs</span><p>Source, mask, instruction, and locally stylized target.</p></article>
@@ -169,7 +169,7 @@
         <p class="section-intro">GRNStyle binds style identities to target regions and combines encoded mask features with explicit geometric support. Source evidence guides content preservation throughout refinement.</p>
         <figure class="paper-figure">
           <img src="static/images/figures/model_pipeline.webp" alt="Overview of GRNStyle" loading="lazy" decoding="async">
-          <figcaption><strong>Figure 2.</strong> (a) Polar style-aware masks bind styles to regions and support multi-region composition. (b) Anchored mask evidence and geometric support are combined with source features through block-wise gating.</figcaption>
+          <figcaption><strong>Overview of GRNStyle.</strong> (a) Polar style-aware masks bind styles to regions and support multi-region composition. (b) Anchored mask evidence and geometric support are combined with source features through block-wise gating.</figcaption>
         </figure>
         <div class="method-grid">
           <article class="method-card">
@@ -205,11 +205,11 @@
               </tbody>
             </table>
           </div>
-          <p class="table-caption"><strong>Table 1.</strong> Component ablation of representation-geometry conditioning (RG) and polar style-aware masks.</p>
+          <p class="table-caption"><strong>Component ablation.</strong> Representation-geometry conditioning (RG) and polar style-aware masks.</p>
         </div>
         <figure class="paper-figure">
           <img src="static/images/figures/mask_conditioning_ablation.webp" alt="Mask-conditioning ablation" loading="lazy" decoding="async">
-          <figcaption><strong>Figure 3.</strong> Representation-geometry conditioning improves spatial localization over raw encoding, while the polar code improves style identity.</figcaption>
+          <figcaption><strong>Mask-conditioning ablation.</strong> Representation-geometry conditioning improves spatial localization over raw encoding, while the polar code improves style identity.</figcaption>
         </figure>
       </div>
     </section>
@@ -222,7 +222,7 @@
           <article class="metric-card"><strong>80</strong><span>source videos</span><p>Each with 81 aligned frames.</p></article>
           <article class="metric-card"><strong>84</strong><span>object-mask units</span><p>Some videos contain two selected subjects.</p></article>
           <article class="metric-card"><strong>168</strong><span>stylization cases</span><p>Foreground and background editing for every unit.</p></article>
-          <article class="metric-card"><strong>93.61%</strong><span>SPS validation</span><p>Macro-averaged nearest-prototype accuracy.</p></article>
+          <article class="metric-card"><strong>93.61%</strong><span>SPS validation</span><p>Macro-averaged video-level accuracy under leave-one-source-out validation.</p></article>
         </div>
         <div class="figure-pair prototype-pair">
           <figure class="paper-figure">
@@ -236,7 +236,7 @@
         </div>
         <div class="metric-grid six-up">
           <article class="metric-card"><strong>SPS</strong><span>style quality</span><p>Similarity to a class-specific prototype bank in CSD feature space.</p></article>
-          <article class="metric-card"><strong>CLIPT</strong><span>text alignment</span><p>Regional alignment between the edited region and the style instruction.</p></article>
+          <article class="metric-card"><strong>CLIPT</strong><span>text alignment</span><p>Regional alignment between the edited region and the canonical style phrase.</p></article>
           <article class="metric-card"><strong>PSNR</strong><span>preservation</span><p>Fidelity to the source outside the intended edit region.</p></article>
           <article class="metric-card"><strong>TC</strong><span>temporal consistency</span><p>Adjacent-frame CLIP feature similarity.</p></article>
           <article class="metric-card"><strong>Style</strong><span>VLM score</span><p>Style correctness, coverage, and cross-frame stability.</p></article>
@@ -284,18 +284,18 @@
                 <tr><th scope="row"><a class="method-link" href="https://github.com/bwchen05/RegionRoute" target="_blank" rel="noopener noreferrer">RegionRoute</a><sup>&ddagger;</sup></th><td>CVPR '26</td><td>0.317</td><td>0.491</td><td>0.154</td><td>0.183</td><td><u>29.38</u></td><td>13.17</td><td>0.955</td><td>2.41</td><td>2.75</td></tr>
                 <tr><th scope="row"><a class="method-link" href="https://github.com/iiiiiiiword/StyleGallery" target="_blank" rel="noopener noreferrer">StyleGallery</a><sup>*&dagger;&ddagger;</sup></th><td>CVPR '26</td><td>0.230</td><td>0.325</td><td>0.146</td><td>0.183</td><td>-</td><td>-</td><td>0.957</td><td>3.39</td><td><u>4.77</u></td></tr>
                 <tr><th scope="row"><a class="method-link" href="https://github.com/coinve200k/CoinVE-200K/tree/main/CoinVE-Edit" target="_blank" rel="noopener noreferrer">CoinVE-Edit</a></th><td>arXiv '26</td><td>0.248</td><td>0.251</td><td>0.153</td><td>0.159</td><td>20.71</td><td>16.76</td><td><u>0.983</u></td><td>3.11</td><td>3.93</td></tr>
-                <tr><th scope="row"><a class="method-link" href="https://seed.bytedance.com/zh/seedance2_5" target="_blank" rel="noopener noreferrer">Seedance 2.5</a></th><td>Jul. 2026</td><td>0.347</td><td>0.358</td><td><strong>0.173</strong></td><td><u>0.175</u></td><td>18.50</td><td>18.76</td><td><strong>0.984</strong></td><td>3.98</td><td>2.40</td></tr>
+                <tr><th scope="row"><a class="method-link" href="https://seed.bytedance.com/zh/seedance2_5" target="_blank" rel="noopener noreferrer">Seedance 2.5</a></th><td>Commercial</td><td>0.347</td><td>0.358</td><td><strong>0.173</strong></td><td><u>0.175</u></td><td>18.50</td><td>18.76</td><td><strong>0.984</strong></td><td>3.98</td><td>2.40</td></tr>
                 <tr><th scope="row"><a class="method-link" href="https://github.com/ali-vilab/VACE" target="_blank" rel="noopener noreferrer">VACE-1.3B</a> (our FT)</th><td>-</td><td><u>0.386</u></td><td><u>0.676</u></td><td>0.155</td><td><u>0.185</u></td><td>25.43</td><td>25.49</td><td>0.980</td><td><u>4.52</u></td><td>4.56</td></tr>
                 <tr class="highlight-row"><th scope="row">GRNStyle-2B (ours)</th><td>-</td><td><strong>0.407</strong></td><td><strong>0.705</strong></td><td><u>0.160</u></td><td><strong>0.199</strong></td><td>25.92</td><td><u>26.15</u></td><td><u>0.983</u></td><td><strong>4.62</strong></td><td>4.64</td></tr>
               </tbody>
             </table>
           </div>
-          <p class="table-caption"><strong>Table 2.</strong> Comparison on the LociArt Benchmark. fg/bg denote editing the target mask and its complement. <sup>&dagger;</sup> Direct mask-compositing methods omit PSNR because non-edited pixels are copied. <sup>&ddagger;</sup> Image-based methods. FT denotes local-stylization fine-tuning.</p>
+          <p class="table-caption"><strong>Benchmark comparison.</strong> fg/bg denote editing the target mask and its complement. <sup>*</sup> Training-free methods. <sup>&dagger;</sup> Direct mask-compositing methods omit PSNR because non-edited pixels are copied. <sup>&ddagger;</sup> Image-based methods. FT denotes local-stylization fine-tuning.</p>
         </div>
           <div class="result-highlights">
-            <div class="result-highlight"><strong>0.705</strong><span>SPS background</span><small>Best in Table 2</small></div>
-            <div class="result-highlight"><strong>0.199</strong><span>CLIPT background</span><small>Best in Table 2</small></div>
-            <div class="result-highlight"><strong>4.62</strong><span>VLM Style</span><small>Highest in Table 2</small></div>
+            <div class="result-highlight"><strong>0.705</strong><span>SPS background</span><small>Best overall</small></div>
+            <div class="result-highlight"><strong>0.199</strong><span>CLIPT background</span><small>Best overall</small></div>
+            <div class="result-highlight"><strong>4.62</strong><span>VLM Style</span><small>Highest overall</small></div>
             <div class="result-highlight"><strong>0.983</strong><span>Temporal consistency</span><small>Near-best</small></div>
           </div>
         </div>
@@ -317,13 +317,13 @@
             <div>
               <p class="kicker">Human evaluation</p>
               <h3>User study</h3>
-              <p>Twenty participants rated 168 matched cases for style fidelity and background preservation.</p>
+              <p>Twenty participants rated a 160-case subset (16 cases per style) for style fidelity and background preservation.</p>
             </div>
           </div>
           <div class="split-layout">
             <figure class="paper-figure">
               <img src="static/images/figures/human_evaluation.webp" alt="Human evaluation of style fidelity and background preservation" loading="lazy" decoding="async">
-              <figcaption><strong>Figure 4.</strong> Human evaluation with 20 participants on 168 cases. GRNStyle achieves the highest mean ratings for style fidelity (4.34) and background preservation (4.47).</figcaption>
+              <figcaption><strong>Human evaluation.</strong> Twenty participants on 160 cases across ten styles. GRNStyle achieves the highest mean ratings for style fidelity (4.34) and background preservation (4.47).</figcaption>
             </figure>
             <div class="copy-panel">
               <p class="kicker">Key findings</p>
@@ -332,7 +332,7 @@
               <ul class="check-list">
                 <li><strong>4.34</strong> mean style fidelity</li>
                 <li><strong>4.47</strong> mean background preservation</li>
-                <li><strong>20</strong> participants across 168 cases</li>
+                <li><strong>20</strong> participants across 160 cases</li>
               </ul>
             </div>
           </div>
@@ -343,7 +343,7 @@
             <div>
               <p class="kicker">Replay-free style expansion</p>
               <h3>New style without replay</h3>
-              <p>Expanding from 10 to 15 classes without replaying old classes preserves the original styles and adds the five new styles through polar conditioning.</p>
+              <p>Expanding from 10 to 15 classes without replaying old classes retains the original styles with substantially less forgetting and adds the five new styles through polar conditioning.</p>
             </div>
           </div>
           <div class="table-block">
@@ -365,7 +365,7 @@
               </tbody>
             </table>
           </div>
-          <p class="table-caption"><strong>Table 3.</strong> Replay-free style expansion from 10 to 15 classes. Expanded models are trained only on the five new classes.</p>
+          <p class="table-caption"><strong>Replay-free style expansion.</strong> Expanded models are trained only on the five new classes. Retention and acquisition are evaluated on 1,680 original-style and 840 new-style cases, respectively.</p>
         </div>
         </div>
       </div>

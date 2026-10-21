@@ -7,7 +7,7 @@ Official project page and method overview for <em>LociArt: A Unified Paradigm fo
 </p>
 
 <a href="https://arxiv.org/abs/26xx.xxxxx"><img src="https://img.shields.io/badge/arXiv-26xx.xxxxx-b31b1b" alt="arXiv"></a>
-<a href="https://lociart-page.pages.dev/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/%F0%9F%90%B3-Project%20Page-blue" alt="Project page"></a>
+<a href="https://higherhu.github.io/lociart/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/%F0%9F%90%B3-Project%20Page-blue" alt="Project page"></a>
 <a href="https://huggingface.co/HigherHu/GRNStyle"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model(TBD)-yellow" alt="GRNStyle model on Hugging Face, coming soon"></a>
 <a href="https://huggingface.co/datasets/HigherHu/LociArt-100K"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-LociArt--100K(TBD)-orange" alt="LociArt-100K dataset on Hugging Face, coming soon"></a>
 <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="Apache 2.0 license"></a>
@@ -94,9 +94,16 @@ LociArt-100K is a large-scale paired dataset for free-style local video stylizat
 - **Broad mask coverage:** foreground mask ratios range from below 5% to over 60%, with a median of 13.1%.
 - **Temporal alignment:** source, mask, and target videos maintain frame correspondence for consistent local editing.
 
-<p align="center">
-<img src="docs/static/images/figures/data_style_pie.webp" height="350" alt="Style-category distribution in LociArt-100K"> &nbsp;&nbsp; <img src="docs/static/images/figures/data_mask_histogram.webp" height="350" alt="Foreground mask-area distribution in LociArt-100K">
-</p>
+<table align="center" width="100%">
+  <tr>
+    <td width="39.05%" align="center" valign="middle">
+      <img src="docs/static/images/figures/data_style_pie.webp" width="100%" alt="Style-category distribution in LociArt-100K">
+    </td>
+    <td width="60.95%" align="center" valign="middle">
+      <img src="docs/static/images/figures/data_mask_histogram.webp" width="100%" alt="Foreground mask-area distribution in LociArt-100K">
+    </td>
+  </tr>
+</table>
 
 <p align="center"><em>Style-category distribution and foreground mask-area distribution in LociArt-100K.</em></p>
 
