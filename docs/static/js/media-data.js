@@ -858,5 +858,67 @@ window.LOCIART_MEDIA = {
         "regionroute.mp4": "720/1280"
       }
     }
+  ],
+  "global": [
+    {
+      "case_id": "0007",
+      "style": "Children’s Book Illustration",
+      "path": "media/global_stylization/0007",
+      "orientation": "landscape",
+      "width": 848,
+      "height": 480,
+      "ratio": "848/480",
+      "fps": "20/1",
+      "frames": "61",
+      "ratios": {
+        "source.mp4": "848/480",
+        "result.mp4": "848/480"
+      }
+    },
+    {
+      "case_id": "0014",
+      "style": "Claymation",
+      "path": "media/global_stylization/0014",
+      "orientation": "landscape",
+      "width": 848,
+      "height": 480,
+      "ratio": "848/480",
+      "fps": "20/1",
+      "frames": "61",
+      "ratios": {
+        "source.mp4": "848/480",
+        "result.mp4": "848/480"
+      }
+    },
+    {
+      "case_id": "0019",
+      "style": "Pixel Art",
+      "path": "media/global_stylization/0019",
+      "orientation": "landscape",
+      "width": 848,
+      "height": 480,
+      "ratio": "848/480",
+      "fps": "20/1",
+      "frames": "61",
+      "ratios": {
+        "source.mp4": "848/480",
+        "result.mp4": "848/480"
+      }
+    },
+    {
+      "case_id": "0047",
+      "style": "Pencil Sketch",
+      "path": "media/global_stylization/0047",
+      "orientation": "landscape",
+      "width": 848,
+      "height": 480,
+      "ratio": "848/480",
+      "fps": "20/1",
+      "frames": "61",
+      "ratios": {
+        "source.mp4": "848/480",
+        "result.mp4": "848/480"
+      }
+    }
   ]
 };

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupGalleries();
 });
 
-const MEDIA = window.LOCIART_MEDIA || { our: [], pipeline: [], sota: [], e2e: [] };
+const MEDIA = window.LOCIART_MEDIA || { our: [], pipeline: [], sota: [], e2e: [], global: [] };
 const VIDEO_ROOT = 'static/videos/';
 
 const labels = {
@@ -28,6 +28,7 @@ const labels = {
 function setupGalleries() {
   setupPipelineGallery();
   setupResultGallery();
+  setupGlobalGallery();
   setupSotaGallery();
   setupFailureGallery();
 }
@@ -80,6 +81,22 @@ function setupResultGallery() {
   };
 
   bindTabs(tabs, render, categories[0][0]);
+}
+
+function setupGlobalGallery() {
+  const grid = document.getElementById('globalGrid');
+  if (!grid) return;
+  grid.innerHTML = (MEDIA.global || []).map((item) => videoCard({
+    title: `${item.style} - Global stylization`,
+    subtitle: `Case ${item.case_id} · Entire frame selected`,
+    pill: 'Whole frame',
+    files: ['source.mp4', 'result.mp4'],
+    item,
+    gridClass: 'two',
+    cardClass: 'global-card',
+    style: `--media-ratio:${item.ratio}`
+  })).join('');
+  activateVideos(grid);
 }
 
 function setupSotaGallery() {

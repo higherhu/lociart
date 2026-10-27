@@ -14,7 +14,7 @@ Official project page and method overview for <em>LociArt: A Unified Paradigm fo
 
 <p>Yuxuan Chen<sup>1,&dagger;</sup>, Feng Xie<sup>2,&dagger;</sup>, Jiagao Hu<sup>1,*,&dagger;</sup>, Fuhao Li<sup>1</sup>, Zepeng Wang<sup>1</sup>, Fei Wang<sup>1</sup>, Daiguo Zhou<sup>1</sup></p>
 
-<p><sup>1</sup> MiLM Plus, Xiaomi Inc. &nbsp;&nbsp; <sup>2</sup> Xi'an University of Electronic Science and Technology</p>
+<p><sup>1</sup> MiLM Plus, Xiaomi Inc. &nbsp;&nbsp; <sup>2</sup> Xidian University</p>
 
 <p><sup>&dagger;</sup> Equal contribution. &nbsp;&nbsp; <sup>*</sup> Corresponding author.</p>
 
@@ -29,8 +29,8 @@ Official project page and method overview for <em>LociArt: A Unified Paradigm fo
 ## Updates
 
 - [ ] Release model weights.
-- [ ] Release training and inference code.
-- [ ] Release the LociArt-100K dataset.
+- [ ] Release inference code.
+- [ ] Release the LociArt-100K dataset and LociArt Benchmark.
 - [x] Publish the paper and project page.
 
 ## Overview
@@ -110,6 +110,8 @@ LociArt-100K is a large-scale paired dataset for free-style local video stylizat
 ## Results
 
 Please visit the **[Results section on the project page](https://lociart-page.pages.dev/#results)** for quantitative comparisons, qualitative examples, user-study results, and replay-free style expansion.
+
+The [global-stylization gallery](docs/index.html#global-gallery) adds four whole-frame source/result comparisons: Children’s Book Illustration, Claymation, Pixel Art, and Pencil Sketch. Selecting every pixel transforms both the subject and its surroundings through the same region–style control.
 
 ## Acknowledgements
 
