@@ -88,7 +88,6 @@ function setupGlobalGallery() {
   if (!grid) return;
   grid.innerHTML = (MEDIA.global || []).map((item) => videoCard({
     title: `${item.style} - Global stylization`,
-    subtitle: `Case ${item.case_id} · Entire frame selected`,
     pill: 'Whole frame',
     files: ['source.mp4', 'result.mp4'],
     item,
@@ -390,6 +389,3 @@ function escapeHtml(value) {
 function escapeAttr(value) {
   return escapeHtml(value);
 }
-
-
-
