@@ -6,7 +6,7 @@
 Official project page and method overview for <em>LociArt: A Unified Paradigm for Free-Style Local Video Stylization</em>
 </p>
 
-<a href="https://arxiv.org/abs/26xx.xxxxx"><img src="https://img.shields.io/badge/arXiv-26xx.xxxxx-b31b1b" alt="arXiv"></a>
+<a href="https://arxiv.org/abs/2610.36456"><img src="https://img.shields.io/badge/arXiv-2610.36456-b31b1b" alt="arXiv"></a>
 <a href="https://higherhu.github.io/lociart/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/%F0%9F%90%B3-Project%20Page-blue" alt="Project page"></a>
 <a href="https://huggingface.co/HigherHu/GRNStyle"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model(TBD)-yellow" alt="GRNStyle model on Hugging Face, coming soon"></a>
 <a href="https://huggingface.co/datasets/HigherHu/LociArt-100K"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-LociArt--100K(TBD)-orange" alt="LociArt-100K dataset on Hugging Face, coming soon"></a>
@@ -132,8 +132,8 @@ If you find LociArt useful for your research, please consider citing our paper:
 @article{chen2026lociart,
   title   = {LociArt: A Unified Paradigm for Free-Style Local Video Stylization},
   author  = {Chen, Yuxuan and Xie, Feng and Hu, Jiagao and Li, Fuhao and Wang, Zepeng and Wang, Fei and Zhou, Daiguo},
+  journal = {arXiv preprint arXiv:2610.36456},
   year    = {2026},
-  note    = {Preprint},
-  url     = {https://higherhu.github.io/lociart}
+  url     = {https://arxiv.org/abs/2610.36456}
 }
 ```
